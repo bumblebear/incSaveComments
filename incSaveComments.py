@@ -44,7 +44,8 @@ def applyCallback(pDescField, *pArgs):
     print 'Apply button pressed.'
 
     desc = cmds.textField(pDescField, query=True, text=True)
-
+    if (len(desc) > 0):
+        desc = "_"+desc
     print 'desc entered = %s' % (desc)
 
 
@@ -67,7 +68,7 @@ def applyCallback(pDescField, *pArgs):
         lastFile = incFiles[len(incFiles)-1]
         name = lastFile.partition(".")[0]
         nameParts=name.split("_")
-        newName=nameParts[0]+"_"+(str(int(nameParts[1])+1).zfill(4))+"_"+desc+".ma"
+        newName=nameParts[0]+"_"+(str(int(nameParts[1])+1).zfill(4))+desc+".ma"
         incSaveFilePath = os.path.join(projectSaveFolder, newName)
         system.saveAs(incSaveFilePath)
         system.saveAs(path)
